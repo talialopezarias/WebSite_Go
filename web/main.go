@@ -13,10 +13,9 @@ func main() {
 	// http.HandleFunc espera dos cosas:
 	// 1. Una ruta ("/") que será la URL que se escuche
 	// 2. Una función que se ejecuta cuando alguien accede a esa ruta.
-	//El primero se utiliza para enviar la respuesta al cliente y el Request representa la solicitud entrante.
 	http.HandleFunc("/", homeHandler)
-	http.HandleFunc("/about", aboutHandler)
-	http.HandleFunc("/contact", contactHandler)
+	http.HandleFunc("/products", productsHandler)
+	http.HandleFunc("/products/detail/", productDetailHandler)
 
 	fmt.Println("Servidor está corriendo en http://localhost:8080")
 	//Primer argumento dirección IP y puerto, y el segundo para utilizar el manejador ya predeterminado.
@@ -31,10 +30,13 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "¡Bienvenido a la página de inicio con Go!")
 }
 
-func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Esta es la página 'Acerca de nosotros'")
+func productsHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Aquí se muestran todos los productos disponibles")
 }
 
-func contactHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Póngase en contácto con nosotros en talialopezarias@gmail.com ")
+func productDetailHandler(w http.ResponseWriter, r *http.Request) {
+	//Se utiliza la función len para obtener la longitud de la ruta URL que se encuentra actual en la propiedad PATH
+	//del objeto r del tipo http.Rquest. Esta subcadena se asigna a productID de tipo String
+	productID := r.URL.Path[len("/products/detail/"):]
+	fmt.Fprintf(w, "Detalles del producto con ID: %s", productID)
 }
