@@ -7,7 +7,7 @@ import "fmt"
 
 //Inicializamos una función. Esta es la función principal: el punto de entrada de cualquier programa en Go
 
-func main(){
+func main() {
 	// Usamos fmt.Println para imprimir "Hola mundo" en la consola
 	fmt.Println("Hola mundo")
 }
