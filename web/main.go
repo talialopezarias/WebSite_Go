@@ -38,10 +38,10 @@ func renderTemplate(w http.ResponseWriter, tmplFile string, data PageData) {
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	data := PageData{
 		Title:   "Mi primera página en Go",
-		Message: template.HTML("Es una página sencilla pero vamos aprendiendo <b>poco a poco</b> impartida por la programadora Talía López")
+		Message: template.HTML("Es una página sencilla pero vamos aprendiendo <b>poco a poco</b> impartida por la programadora Talía López"),
 	}
 
-	tmplFile := filepath.Join("web/templates/", "home.html")
+	tmplFile := filepath.Join("web/templates/", "index.html")
 	renderTemplate(w, tmplFile, data)
 
 }
