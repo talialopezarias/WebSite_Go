@@ -22,7 +22,7 @@ func main() {
 
 	defer logFile.Close() //aseguramos que el archivo se cierre correctamente cuando main se cierra
 
-	log.SetOutput(logFile)
+	log.SetOutput(logFile) //capturar información detallada de los errores
 
 	cfg := config.LoadConfig()
 
