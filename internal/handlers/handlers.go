@@ -30,7 +30,7 @@ func renderTemplate(w http.ResponseWriter, tmplFile string, data interface{}) {
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	data := models.PageData{
 		Title:   "Mi primera página en Go",
-		Author:  "Talía López",
+		Author:  "Talía López Arias",
 		Welcome: "Go es un lenguaje que impactará en tus proyectos webs actuales y futuros.",
 	}
 
