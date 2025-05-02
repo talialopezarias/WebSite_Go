@@ -4,6 +4,7 @@
 package handlers
 
 import (
+	"bytes"
 	"html/template"
 	"net/http"
 	"os"
@@ -42,6 +43,46 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmplFile := "web/templates/" + page
 
+	//Head functions
+	headContent, err := os.ReadFile("web/templates/head.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	headTemplate, err := template.New("head").Parse(string(headContent))
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	var headBuffer bytes.Buffer
+
+	err = headTemplate.Execute(&headBuffer, data)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	data.HeadContent = template.HTML(headBuffer.String())
+
+	//Navbar functions
+	navbarContent, err := os.ReadFile("web/templates/navbar.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	navbarTemplate, err := template.New("navbar").Parse(string(navbarContent))
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	var navbarBuffer bytes.Buffer
+
+	err = navbarTemplate.Execute(&navbarBuffer, data)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	data.NavbarContent = template.HTML(navbarBuffer.String())
+
 	if _, err := os.Stat(tmplFile); err != nil {
 		tmplFile = "web/templates/error.html"
 
@@ -61,5 +102,4 @@ func ErrorHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	renderTemplate(w, "web/templates/error.html", data)
-
 }
