@@ -1,5 +1,4 @@
-//Este archivo registra las rutas y las asocia con sus respectivos manejadores.
-
+// Este archivo registra las rutas y las asocia con sus respectivos manejadores.
 package routes
 
 import (
@@ -8,7 +7,7 @@ import (
 	"github.com/talialopezarias/WebSite_Go/internal/handlers"
 )
 
-// Función que registra las rutas
+// Función que registra las rutas para la pagina principal y de error.
 func RegisterRoutes() {
 	http.HandleFunc("/", handlers.HomeHandler)
 	http.HandleFunc("/error", handlers.ErrorHandler)
