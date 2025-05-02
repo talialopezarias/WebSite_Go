@@ -16,7 +16,7 @@ func main() {
 
 	routes.RegisterRoutes()
 
-	addr := ftm.Sprintf(":%s", cfg.Port)
+	addr := fmt.Sprintf(":%s", cfg.Port)
 
 	server := &http.Server{
 		Addr:    addr,
