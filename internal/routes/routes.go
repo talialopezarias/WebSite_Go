@@ -4,12 +4,14 @@ package routes
 
 import (
 	"net/http" //para manejar rutas
+
+	"github.com/talialopezarias/WebSite_Go/internal/handlers"
 )
 
 // Función que registra las rutas
 func RegisterRoutes() {
-	http.HandleFunc("/", handlers.homeHandler)
-	http.HandleFunc("/error", handlers.errorHandler)
+	http.HandleFunc("/", handlers.HomeHandler)
+	http.HandleFunc("/error", handlers.ErrorHandler)
 
 	fs := http.FileServer(http.Dir("web/statics"))
 
