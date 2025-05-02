@@ -60,6 +60,6 @@ func errorHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorMessage: "Error interno del servidor",
 	}
 
-	renderTemplate(w, "web/tempaltes/error.html", data)
+	renderTemplate(w, "web/templates/error.html", data)
 
 }
